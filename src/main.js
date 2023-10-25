@@ -14,23 +14,21 @@ var defaultArgs = [1, 100, 1, Date.now()*10000];
 
 // returns a random number given an API request and an RNG function
 function generateRandomNumber(req, func){
-    let args = [req.query.lower, req.query.upper, req.query.count, req.query.seed]
-    // parse queries 
+    let args = [parseInt(req.query.lower), parseInt(req.query.upper), parseInt(req.query.count), parseFloat(req.query.seed)];
+    // parse queries     console.log(req.query);
     // for each parameter (lower bound, upper bound, and seed), check if it's specified, and set it to the default if not
     for (let i = 0; i < 4; i++){
-        if (args[i] == undefined){
-            console.log('undefined');
+        if (!args[i]){
             args[i] = defaultArgs[i];
         }
     }
     // set the seed and generate the random number
-    ran.core.seed(args[seedIndex]);
     // update the default seed
     defaultArgs[seedIndex] = Date.now()*10000;
     console.log(`Generated ${args[countIndex]} random numbers between ${args[lBoundIndex]} and ${args[uBoundIndex]}, with seed ${args[seedIndex]}`);
     // convert output to an array if only one number is generated
     if (args[countIndex] < 2) {
-        return [func(args[lBoundIndex], args[uBoundIndex], args[countIndex])];
+        return [func(args[lBoundIndex], args[uBoundIndex],args[countIndex])];
     }
     else{
         return func(args[lBoundIndex], args[uBoundIndex], args[countIndex]);
