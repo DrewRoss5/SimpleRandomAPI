@@ -1,7 +1,6 @@
 # SimpleRandomAPI
 A simple API for generating numbers, made to learn ExpressJS.
 This project is not intended for serious use, but rather as a learning excersise
-**NOTE:** Currently, the "lower" URL query, used to set a lower bound for random numbers is nonfunctional
 # Usage
 ## GET Requests
 ### `/int`:
